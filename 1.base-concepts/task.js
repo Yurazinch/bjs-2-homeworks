@@ -15,5 +15,12 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  
+
+  let percentNormalize = ( percent / 100 ) / 12;
+  let creditBody = amount - contribution;
+  let monthlyPayment = creditBody * ( percentNormalize + ( percentNormalize / ( Math.pow(1 + percentNormalize, countMonths) - 1 )));
+  let overAmount = monthlyPayment * countMonths;
+
+  return Math.round(overAmount * 100) / 100;
+
 }
