@@ -17,7 +17,7 @@ function getUsersNamesInAgeRange(users, gender) {
   if (users.length < 1 || (gender != 'мужской' && gender != 'женский')) {
     return 0;
   } 
-  let ages = users.filter(element => element.gender === gender).map(element => element.age).reduce((total, item, index, array) => {
+  users.filter(element => element.gender === gender).map(element => element.age).reduce((total, item, index, array) => {
     total += item;
     if (index === array.length - 1) {
       return total / array.length;
