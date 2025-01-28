@@ -66,19 +66,22 @@ class Library {
 
     findBookBy(type, value) {              
         for (let i = 0; i < this.books.length; i++) {
-            if (this.books[i].type != null && (this.books[i].type === type || this.books[i].value === value)) {
+            if (this.books[i].hasOwnProperty(type) && this.books[i][type] === value) {
               return this.books[i];
-            }
-            return null;
+            }            
         }
+        return null;
     }
 
-    giveBookByName(bookName) {        
+    giveBookByName(bookName) {
+        let removedBook;                
         for (let i = 0; i < this.books.length; i++) {        
-            if (this.books[i].name != undefined && this.books[i].name === bookName) {
-              this.books.splice(i, 1);
-            }
-            
+            if (this.books[i].name === bookName) {                               
+                removedBook = this.books[i];
+                this.books.splice(i, 1);
+                return removedBook;
+            }                       
         }
+        return null;
     }
 }
