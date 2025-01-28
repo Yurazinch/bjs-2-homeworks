@@ -85,3 +85,28 @@ class Library {
         return null;
     }
 }
+
+class Student {
+    constructor (name) {
+     this.name = name;
+     this.subjects = [];
+    }
+
+    addMark (mark, subjectName) {              
+        /*if (mark < 2 || mark > 5) {
+            return;
+        }*/
+        let arr;
+        for (let i = 0; i < this.subjects.length; i++) {
+            if (this.subjects[i].hasOwnProperty(subjectName)) {
+                this.subjects[i].subjectName.push(mark);
+            }
+        }
+        let subject = {[subjectName]: []}; 
+        subject.subjectName.push(mark);               
+        this.subjects.push(subject);
+        
+        /*let lastIndex = this.subjects.length - 1;
+        this.subjects[lastIndex].subject.push(mark);  */       
+    }
+}
