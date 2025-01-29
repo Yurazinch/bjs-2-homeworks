@@ -95,16 +95,18 @@ class Student {
     addMark (mark, subjectName) {              
         /*if (mark < 2 || mark > 5) {
             return;
-        }*/
+        }
         let arr;
         for (let i = 0; i < this.subjects.length; i++) {
             if (this.subjects[i].hasOwnProperty(subjectName)) {
                 this.subjects[i].subjectName.push(mark);
             }
-        }
-        let subject = {[subjectName]: []}; 
-        subject.subjectName.push(mark);               
+        }*/
+        
+        let subject = {[subjectName]: []};                    
         this.subjects.push(subject);
+        this.subjects.filter(item => item.subjectName === subjectName).map(item => array.push(mark));
+
         
         /*let lastIndex = this.subjects.length - 1;
         this.subjects[lastIndex].subject.push(mark);  */       
