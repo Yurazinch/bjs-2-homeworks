@@ -89,26 +89,42 @@ class Library {
 class Student {
     constructor (name) {
      this.name = name;
-     this.subjects = [];
+     this.marks = {};
     }
 
     addMark (mark, subjectName) {              
-        /*if (mark < 2 || mark > 5) {
+        if (mark < 2 || mark > 5) {
             return;
         }
-        let arr;
-        for (let i = 0; i < this.subjects.length; i++) {
-            if (this.subjects[i].hasOwnProperty(subjectName)) {
-                this.subjects[i].subjectName.push(mark);
+        if (this.marks[subjectName] != undefined || this.marks[subjectName] != null) {
+            this.marks[subjectName].push(mark);
             }
-        }*/
-        
-        let subject = {[subjectName]: []};                    
-        this.subjects.push(subject);
-        this.subjects.filter(item => item.subjectName === subjectName).map(item => array.push(mark));
+        if (this.marks[subjectName] === undefined || this.marks[subjectName] === null) {
+            this.marks[subjectName] = [];                    
+            this.marks[subjectName].push(mark);
+        }          
+    }
 
-        
-        /*let lastIndex = this.subjects.length - 1;
-        this.subjects[lastIndex].subject.push(mark);  */       
+    getAverageBySubject(subjectName) {
+        if (this.marks[subjectName] === undefined || this.marks[subjectName] === null) {
+            return 0;
+        }
+        return this.marks[subjectName].reduce((summ, item) => summ + item, 0) / this.marks[subjectName].length;
+    }
+
+    getAverage() {
+        let subjects = Object.keys(this.marks);
+        if (subjects.length < 1) {
+            return 0;
+        }
+        // первый вариант
+        /*let summ = 0;
+        for (let i = 0; i < subjects.length; i++) {
+            summ += this.getAverageBySubject(subjects[i]);
+        }
+        return summ / subjects.length;*/
+
+        // второй вариант
+        return subjects.reduce((summ, subject) => summ + this.getAverageBySubject(subject), 0) / subjects.length;
     }
 }
