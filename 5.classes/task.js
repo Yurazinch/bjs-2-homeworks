@@ -109,7 +109,7 @@ class Student {
         if (this.marks[subjectName] === undefined || this.marks[subjectName] === null) {
             return 0;
         }
-        return this.marks[subjectName].reduce((summ, item) => summ + item, 0) / this.marks[subjectName].length;
+        return this.marks[subjectName].reduce((summ, mark) => summ + mark, 0) / this.marks[subjectName].length;
     }
 
     getAverage() {
