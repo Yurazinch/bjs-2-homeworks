@@ -27,7 +27,7 @@ class Triangle {
             return this.perimeter = this.a + this.b + this.c;
         }
         catch (error) {
-            console.log(error);
+            return error;
         }
     }
 
@@ -37,7 +37,7 @@ class Triangle {
             return this.area = Number.parseFloat((Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c))).toFixed(3));
         }
         catch (error) {
-            console.log(error);
+            return error;
         }
     } 
 
