@@ -16,7 +16,7 @@ function validateCount(value) {
 }
 
 class Triangle {
-    constructor (a,b,c) {
+    constructor (a, b, c) {
         this.a = a;
         this.b = b;
         this.c = c;
@@ -41,11 +41,11 @@ class Triangle {
         }
     } 
 
-   getTriangle (a,b,c) {        
+   getTriangle (a, b, c) {        
         if (a + b <= c || b + c <= a || c + a <= b) {
             throw new Error('Ошибка! Треугольника не существует');
         }  
-        const triangle = new Triangle(a,b,c);
+        const triangle = new Triangle(a, b, c);
         triangle.perimeter;
         triangle.area;
         return triangle;
