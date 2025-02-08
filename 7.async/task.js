@@ -1,17 +1,16 @@
 class AlarmClock {
-    constructor (alarmCollection, intervalId) {
+    constructor () {
         this.alarmCollection = [];
         this.intervalId = null;
     }
+
     addClock(time, callback) {             
-        if(time === null || callback === undefined) {
+        if(!time || !callback) {
             throw new Error('Отсутствуют обязательные аргументы');
         }
-        for (let i of this.alarmCollection) {        
-            if(this.alarmCollection[i].time === time) {
+        if(this.alarmCollection.some((element) => element.time === time)) {
             console.warn('Уже присутствует звонок на это же время');
-            }
-        }
+        }        
         let arg = {
             time: time,
             callback: callback,
@@ -37,15 +36,13 @@ class AlarmClock {
         }
         this.intervalId = setInterval(() => {
             this.alarmCollection.forEach(item => { 
-                if((item.time === this.getCurrentFormattedTime()) &&
-                (item.canCall === true)) {
+                if((item.time === this.getCurrentFormattedTime()) && (item.canCall === true)) {
                     item.canCall = false;
                     item.callback();
                 }
             })
         }, 1000)
-    }                
-    
+    }
 
     stop() {
         clearInterval(this.intervalId);
