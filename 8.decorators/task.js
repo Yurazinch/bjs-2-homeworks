@@ -48,5 +48,26 @@ function cachingDecoratorNew(func) {
 
 //Задача № 2
 function debounceDecoratorNew(func, delay) {
-  
+    let timeoutId = null;
+    wrapper.count = 0;
+    wrapper.allCount = 0;       
+    function wrapper(...args) {
+        wrapper.allCount += 1;
+        console.log('тук-тук ' + wrapper.allCount);
+        if(timeoutId === null) {
+            wrapper.count += 1;
+            func(...args);
+            console.log('синхронный запуск ' + wrapper.count);
+        } else {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+            console.log('очищаю ID');
+        }
+        timeoutId = setTimeout(() => {
+            wrapper.count += 1;
+            func(...args);
+            console.log('запускаю асинхронный таймер');
+        }, delay);
+    }
+    return wrapper;
 }
